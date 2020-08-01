@@ -6,8 +6,9 @@ var name,pic
 
 const { google } = require("googleapis");
 
-const app = express();
-
+const app = express()
+app.set('port', (process.env.PORT || 5000))
+ 
 
 const CLIENT_ID = OAuth2Data.web.client_id;
 const CLIENT_SECRET = OAuth2Data.web.client_secret;
@@ -132,6 +133,6 @@ app.get("/google/callback", function (req, res) {
   }
 });
 
-app.listen(5000, () => {
-  console.log("App is listening on Port 5000");
-});
+app.listen(app.get('port'), function() {
+    console.log("Node app is running at host:" + app.get('port'))
+})
